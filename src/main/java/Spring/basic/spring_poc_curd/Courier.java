@@ -58,17 +58,34 @@ public class Courier {
         @GetMapping("/get/{executive}")
         public List<EKart> executive(@PathVariable("executive") String executive) {
             return  Orderproduct.stream().filter(list->list.getExecutiveName().equalsIgnoreCase(executive)).collect(Collectors.toList());
-
+                 if(list_E.isEmpty()){
+           return null;
+      }
+      else {
+           return list_E;
+      }            
         }
         @GetMapping("/get/address/{address}")
         public List<EKart>  address(@PathVariable("address") String address){
             return  Orderproduct.stream().filter(list->list.getReceiverAddress().equalsIgnoreCase(address)).collect(Collectors.toList());
-
-        }
+                
+                  if (list.isEmpty()){
+           return null;
+       }
+       else {
+           return match_address;
+       }
+   }
 
         @GetMapping("/get/rec/{receiver}")
         public List<EKart>  receiver(@PathVariable("receiver") String receiver){
             return  Orderproduct.stream().filter(list->list.getReceiverName().equalsIgnoreCase(receiver)).collect(Collectors.toList());
+                if (list.isEmpty()){
+           return null;
+       }
+       else {
+           return reciv;
+       }
 
         }
 
